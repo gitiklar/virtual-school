@@ -1,3 +1,5 @@
+```JS
+
 Database:
 {
     users: {
@@ -46,3 +48,5 @@ Database:
         homeWork: 
     }
 }
+
+```

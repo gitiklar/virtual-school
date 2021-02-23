@@ -12,23 +12,23 @@ const Login = () => {
 
   return (
       <div className="form-container">
-        <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
+        <Form dir="rtl" name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
             <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!',},]}>
-                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="שם משתמש" />
             </Form.Item>
             <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!', },]}>
-                <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password"/>
+                <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="סיסמא"/>
             </Form.Item>
             <Form.Item>
                 <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox>זכור אותי</Checkbox>
                 </Form.Item>
-                <a className="login-form-forgot" href=""> Forgot password </a>
+                <a className="login-form-forgot" href=""> שכחתי סיסמא </a>
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
-                <a href="">register now!</a>
+                <Button type="primary" htmlType="submit" className="login-form-button">כניסה</Button>
+                <a href="">הירשם עכשיו!</a>
             </Form.Item>
         </Form>
       </div>
