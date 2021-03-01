@@ -3,16 +3,14 @@ const router = express.Router();
 const User = require('../models/user-model');
 
 router.post('/user', async function(req, res, next) {
-    res.send({myText:'aaaaa'});
-/*
     const user = new User(req.body);
     try {
         await user.save();
-        res.send('aaaaa');
+        res.send({myText:'OK'})
     } catch(err) {
-        return next(err);
+        res.send({myText:'Err'})
+        //return next(err);
     }
-    */
 });
 
 module.exports = router;

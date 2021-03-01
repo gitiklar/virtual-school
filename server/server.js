@@ -1,7 +1,7 @@
 
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
+//const https = require('https');
+//const fs = require('fs');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const userRouter = require('./routes/user-route');
@@ -13,14 +13,17 @@ const corsOptions = {
   origin: "http://localhost:8080",
   credentials: true,
 };
-app.use(bodyParser.json())
-app.use(userRouter);
-app.use(cors(corsOptions));
 
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.use(userRouter);
 app.get('/',function(req , res){
   res.sendStatus(200);
 });
 
+app.listen(8000);
+
+/*
 const options = {
   key: fs.readFileSync('./key.pem'),
   cert: fs.readFileSync('./cert.pem')
@@ -31,3 +34,4 @@ https.createServer(options, function (req, res) {
   res.end("hello2 world\n");
 }).listen(8000);
 
+*/
