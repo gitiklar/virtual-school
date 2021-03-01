@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 
 import '../styles/main.scss';
 import Login from './login';
-
+import NewUser from './newUser';
 const App = () => {
     return (
-        <Login/>
+        <NewUser/>
     );
 }
 
