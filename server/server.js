@@ -3,18 +3,16 @@ const https = require('https');
 const fs = require('fs');
 
 const userRouter = require('./models/user-model');
-const path = require('path')
 
 const app = express();
 app.use(userRouter);
 app.get('/',function(req , res){
     console.log('Hello World');
 });
-console.log(path.join(__dirname,'key.pem'))
 
 const options = {
-  key: fs.readFileSync(path.join(__dirname,'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname,'cert.pem'))
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem')
 };
 
 https.createServer(options, function (req, res) {
