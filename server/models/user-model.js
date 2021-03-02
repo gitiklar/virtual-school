@@ -11,11 +11,11 @@ const userSchema = new Schema({
     password: { type: String , required: true },
     phoneNumber: { type: String , required: true },
     address: {
-        city: String,
-        street: String,
-        houseNumber: String,
+        city: { type: String , required: true },
+        street: { type: String , required: true },
+        houseNumber: { type: String , required: true },
     },
-    role: { type: String },
+    role: { type: String , required: true }, 
 });
 
 module.exports = mongoose.model('User', userSchema);

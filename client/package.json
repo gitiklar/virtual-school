@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.5.0",
     "antd": "^4.12.3",
     "jquery": "^3.5.1"
   }

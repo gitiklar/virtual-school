@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 import '../styles/main.scss';
 import Login from './login';
-import NewUser from './newUser';
+import AddNewUser from './addNewUser';
+import Provider from 'react-redux';
+
 const App = () => {
     return (
-        <NewUser/>
+            <AddNewUser/>
     );
 }
 
