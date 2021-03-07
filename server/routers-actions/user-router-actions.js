@@ -4,9 +4,9 @@ async function addUser (req, res, next) {
     const user = new User(req.body);
     try {
         await user.save();
-        res.send({myText:'OK'})
+        res.sendStatus(200);
     } catch(err) {
-        res.send({myText:'Err'})
+        res.status(400).send({error:err});
     }
 };
 

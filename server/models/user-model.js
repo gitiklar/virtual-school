@@ -15,7 +15,7 @@ const userSchema = new Schema({
         street: { type: String , required: true },
         houseNumber: { type: String , required: true },
     },
-    role: { type: String , required: true }, 
+    role: { type: String , required: true },
 });
 
 module.exports = mongoose.model('User', userSchema);

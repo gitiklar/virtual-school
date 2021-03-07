@@ -41,6 +41,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
     "antd": "^4.12.3",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "redux-thunk": "^2.3.0"
   }
 }

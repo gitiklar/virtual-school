@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
       <div className="form-container">
-        <Form dir="rtl" name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish}>
+        <Form dir="rtl" name="normal_login" className="form" initialValues={{ remember: true, }} onFinish={onFinish}>
             <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!',},]}>
                 <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="שם משתמש" />
             </Form.Item>
@@ -27,7 +27,7 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">כניסה</Button>
+                <Button type="primary" htmlType="submit">כניסה</Button>
                 <a href="">הירשם עכשיו!</a>
             </Form.Item>
         </Form>
