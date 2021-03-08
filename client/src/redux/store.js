@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 
 import userReducer from './reducers/user-reducer';
 import { localStorageMiddleware , saveNewUserMiddleware } from './middlewares';
-import { loadInputFromLocalStorage } from './actions';
+import { loadInputsFromLocalStorage } from './actions';
 
 const reducer = combineReducers({ userReducer });
 const store = createStore(reducer , applyMiddleware(thunk , localStorageMiddleware , saveNewUserMiddleware));
-store.dispatch(loadInputFromLocalStorage());
+store.dispatch(loadInputsFromLocalStorage());
 export default store;
 window.store = store;

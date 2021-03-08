@@ -19,8 +19,9 @@ const AddNewUser = ({ dispatch , userFormData , newUserMessage }) => {
 
     useEffect(()=> {
         if(!newUserMessage.message) return;
-        newUserMessage.type === 'error' && message.error({ content: newUserMessage.message, key, duration: 2 });
-        newUserMessage.type === 'success' && message.success({ content: newUserMessage.message, key, duration: 2 });
+        newUserMessage.type === 'error' && message.error({ content: newUserMessage.message, key, duration: 3 });
+        newUserMessage.type === 'info' && message.info({ content: newUserMessage.message, key, duration: 3 });
+        newUserMessage.type === 'success' && message.success({ content: newUserMessage.message, key, duration: 3 });
         newUserMessage.type === 'success' && dispatch(resetFormData());
     } , [newUserMessage.message]);
 
@@ -37,11 +38,8 @@ const AddNewUser = ({ dispatch , userFormData , newUserMessage }) => {
     }
 
     const fields = [];
-    Object.keys(userFormData).map(key => {
-        key!=='address' && fields.push({name : [key] , value: userFormData[key]});
-        key === 'address' && Object.keys(userFormData[key]).map(addressKey=> fields.push({name : [addressKey] , value: userFormData[key][addressKey]}));
-    });
-
+    Object.keys(userFormData).forEach(key =>key!=='address' && fields.push({name : [key] , value: userFormData[key]}));
+    Object.keys(userFormData.address).forEach(key=> fields.push({name : [key] , value: userFormData.address[key]}));
     return (
         <div className="form-container">
             <Form fields={fields} onInput={(e)=>onInputHandler(e.target)} onFinish={onSubmit} dir="rtl" className="form">

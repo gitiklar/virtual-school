@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { SAVE_FORM_INPUT , RESET_FORM_DATA , SAVE_NEW_USER_MESSAGE , LOAD_INPUT_FROM_LOCAL_STORAGE } from '../actions';
+import { SAVE_FORM_INPUT , RESET_FORM_DATA , SAVE_NEW_USER_MESSAGE , LOAD_INPUTS_FROM_LOCAL_STORAGE } from '../actions';
 
 const initialState = {
     userFormData: {
@@ -31,7 +31,7 @@ export default produce((state , action)=>{
         case SAVE_NEW_USER_MESSAGE: 
             state.newUserMessage = action.payload;
             break;
-        case LOAD_INPUT_FROM_LOCAL_STORAGE:
+        case LOAD_INPUTS_FROM_LOCAL_STORAGE:
             state.userFormData = action.payload;
             break;
         case RESET_FORM_DATA:

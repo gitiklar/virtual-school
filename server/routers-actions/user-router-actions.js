@@ -6,7 +6,7 @@ async function addUser (req, res, next) {
         await user.save();
         res.sendStatus(200);
     } catch(err) {
-        res.status(400).send({error:err});
+        res.status(400).send({error : err});
     }
 };
 
