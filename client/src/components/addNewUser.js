@@ -1,20 +1,15 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Select , message} from 'antd'; const { Option } = Select;
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, GlobalOutlined, HomeOutlined, WalletOutlined , EditOutlined } from '@ant-design/icons';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import 'antd/dist/antd.css';
-import '../styles/main.scss';
-import { saveNewUser , saveFormInput , resetFormData} from './redux/actions';
+import { saveNewUserFormInput , saveNewUser , resetFormData} from '../redux/actions';
 
-function mapStateToProps(state) {
-    return {
-        userFormData: state.userReducer.userFormData,
-        newUserMessage: state.userReducer.newUserMessage,
-    };
-}
-
-const AddNewUser = ({ dispatch , userFormData , newUserMessage }) => {
+const AddNewUser = () => {
+    const dispatch = useDispatch();
+    const userFormData = useSelector(state => state.userReducer.userFormData);
+    const newUserMessage = useSelector(state => state.userReducer.newUserMessage);   
     const key = 'updatable';
 
     useEffect(()=> {
@@ -29,11 +24,11 @@ const AddNewUser = ({ dispatch , userFormData , newUserMessage }) => {
         const newUserFormData = JSON.parse(JSON.stringify(userFormData));
         typeof target === 'string' && (newUserFormData['role'] = target);
         target.dataset && (target.dataset.address ? newUserFormData.address[target.id] = target.value : newUserFormData[target.id] = target.value);
-        dispatch(saveFormInput(newUserFormData));
+        dispatch(saveNewUserFormInput(newUserFormData));
     }  
 
     function onSubmit() {
-        message.loading({ content: 'שולח...', key });
+        message.loading({ content: '...שולח', key });
         dispatch(saveNewUser());
     }
 
@@ -90,4 +85,4 @@ const AddNewUser = ({ dispatch , userFormData , newUserMessage }) => {
     );
 }
 
-export default connect(mapStateToProps)(AddNewUser);
+export default AddNewUser;

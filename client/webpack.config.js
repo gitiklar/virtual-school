@@ -6,12 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    main: ['./src/main.js', './styles/main.scss'],
+    main: ['./src/components/main.js', './styles/main.scss'],
   },
 
   mode: 'development',
   devServer: {
     overlay: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [      
@@ -38,7 +39,8 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -19,3 +19,7 @@ async function doFetch(url , method , body = null) {
 export async function postRequest(url , data) {
      return await doFetch(`${serverUrl}${url}` , 'POST' , data);
 }
+
+export async function getRequest(url , data) {
+    return await doFetch(`${serverUrl}${url}` , 'GET' , data);
+}
