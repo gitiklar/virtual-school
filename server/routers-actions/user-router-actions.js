@@ -18,13 +18,13 @@ async function login(req , res , next) {
     try {
         const user = await User.findOne({userName , password});
         if(!user) {
-            res.status(401).json({status:401 , error : '!שם המשתמש ו/או הסיסמה שגויים'});
+            res.status(401).json({type:'error' , message: '!שם המשתמש ו/או הסיסמה שגויים'});
         } else {
-            res.status(200).json({status:200 , role : user.role});
+            res.status(200).json({status:200 , user});
         }
 
     } catch(err) {
-        res.status(400).json({status:400 , error : err});
+        res.status(400).json({type:'error' , message: `אופססס התרחשה שגיאה  : ${err.message}`});
     }
 
 }
