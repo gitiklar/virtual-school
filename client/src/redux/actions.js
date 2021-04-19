@@ -1,8 +1,9 @@
 export const SAVE_NEW_USER_FORM_INPUT = 'SAVE_NEW_USER_FORM_INPUT';
 export const RESET_FORM_DATA = 'RESET_FORM_DATA';
-export const SAVE_NEW_USER_MESSAGE = 'SAVE_NEW_USER_MESSAGE';
+export const INDICATION_MESSAGE = 'INDICATION_MESSAGE';
 export const LOAD_INPUTS_FROM_LOCAL_STORAGE = 'LOAD_INPUTS_FROM_LOCAL_STORAGE';
 export const SAVE_LOGIN_FORM_INPUT = 'SAVE_LOGIN_FORM_INPUT';
+export const UPDATE_LOGGED_IN_USER_FORM_DATA = 'UPDATE_LOGGED_IN_USER_FORM_DATA'
 import { postRequest } from "../service";
 
 export function saveNewUserFormInput(newUserFormData) {
@@ -16,13 +17,12 @@ export function saveLoginFormInput(newLoginFormData) {
 export function saveNewUser() {
     return async function(dispatch, getState) {
         try {     
-            const response = await postRequest('/user' , getState().userReducer.userFormData);
-            dispatch(saveNewUserMessage(response.type, response.message));
+            const response = await postRequest('/user' , getState().userReducer.subscribeUserFormData);
+            dispatch(indicationMessage(response.type, response.message));
         } catch(err) {
             console.log(err);
-            dispatch(saveNewUserMessage('error','!אופססס התרחשה שגיאה , הטופס לא נשלח'));
+            dispatch(indicationMessage('error','!אופססס התרחשה שגיאה , הטופס לא נשלח'));
         }
-        dispatch(saveNewUserMessage('',''));
     }
 }
 
@@ -30,12 +30,16 @@ export function resetFormData() {
     return { type: RESET_FORM_DATA };
 }
 
-export function saveNewUserMessage(type , message) {
-    return { type: SAVE_NEW_USER_MESSAGE , payload: { type , message } };
+export function indicationMessage(type , message) {
+    return { type: INDICATION_MESSAGE , payload: { type , message } };
 }
 
 export function loadInputsFromLocalStorage() {
     return { type: LOAD_INPUTS_FROM_LOCAL_STORAGE };
+}
+
+function updateLoggedInUserFormDate(user) {
+    return { type: UPDATE_LOGGED_IN_USER_FORM_DATA , payload: user };
 }
 
 export function login(history) {
@@ -43,12 +47,13 @@ export function login(history) {
         try {
             const response = await postRequest('/login' , getState().userReducer.loginFormData);
             if(response.status === 200) {
-                history.push({ pathname: '/home',state: { role : response.role } });
+                dispatch(updateLoggedInUserFormDate(response.user));
+                history.push('/home');
             } else {
-                console.log(response.error);
+                dispatch(indicationMessage(response.type, response.message));
             }
         } catch(err) {
-    
+            dispatch(indicationMessage('error','!אופססס התרחשה שגיאה'));
         }
     }
 }

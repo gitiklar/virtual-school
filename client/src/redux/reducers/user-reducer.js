@@ -1,9 +1,9 @@
 import produce from 'immer';
 
-import { SAVE_NEW_USER_FORM_INPUT , RESET_FORM_DATA , SAVE_NEW_USER_MESSAGE , LOAD_INPUTS_FROM_LOCAL_STORAGE , SAVE_LOGIN_FORM_INPUT} from '../actions';
+import { SAVE_NEW_USER_FORM_INPUT , RESET_FORM_DATA , INDICATION_MESSAGE , LOAD_INPUTS_FROM_LOCAL_STORAGE , SAVE_LOGIN_FORM_INPUT, UPDATE_LOGGED_IN_USER_FORM_DATA} from '../actions';
 
 const initialState = {
-    userFormData: {
+    subscribeUserFormData: {
         firstName: '',
         lastName: '',
         userName: '',
@@ -17,33 +17,37 @@ const initialState = {
         },
         role: null,
     },
-    newUserMessage: {
+    loggedInUserFormData: {},
+    indicationMessage: {
         type: '',
         message:'',
+        key:'abc',
     },
     loginFormData: {
         userName: '',
         password: '',
-        role: '',
     },
 };
 
 export default produce((state , action)=>{
     switch(action.type) {
         case SAVE_NEW_USER_FORM_INPUT: 
-            state.userFormData = action.payload;
+            state.subscribeUserFormData = action.payload;
             break;
         case SAVE_LOGIN_FORM_INPUT:
             state.loginFormData = action.payload;
             break;
-        case SAVE_NEW_USER_MESSAGE: 
-            state.newUserMessage = action.payload;
+        case INDICATION_MESSAGE: 
+            state.indicationMessage = {...state.indicationMessage, ...action.payload}
             break;
         case LOAD_INPUTS_FROM_LOCAL_STORAGE:
-            state.userFormData = action.payload;
+            state.subscribeUserFormData = action.payload;
             break;
         case RESET_FORM_DATA:
-            state.userFormData = initialState.userFormData;
+            state.subscribeUserFormData = initialState.subscribeUserFormData;
+            break;
+        case UPDATE_LOGGED_IN_USER_FORM_DATA:
+            state.loggedInUserFormData = action.payload;
             break;
     }
 } , initialState);

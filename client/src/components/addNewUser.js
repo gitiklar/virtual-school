@@ -4,37 +4,36 @@ import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, GlobalOutlined
 import { useDispatch, useSelector } from 'react-redux';
 
 import 'antd/dist/antd.css';
-import { saveNewUserFormInput , saveNewUser , resetFormData} from '../redux/actions';
+import { saveNewUserFormInput , saveNewUser , resetFormData } from '../redux/actions';
 
 const AddNewUser = () => {
     const dispatch = useDispatch();
-    const userFormData = useSelector(state => state.userReducer.userFormData);
-    const newUserMessage = useSelector(state => state.userReducer.newUserMessage);   
-    const key = 'updatable';
+    const subscribeUserFormData = useSelector(state => state.userReducer.subscribeUserFormData);
+    const indicationMessage = useSelector(state => state.userReducer.indicationMessage);   
 
     useEffect(()=> {
-        if(!newUserMessage.message) return;
-        newUserMessage.type === 'error' && message.error({ content: newUserMessage.message, key, duration: 3 });
-        newUserMessage.type === 'info' && message.info({ content: newUserMessage.message, key, duration: 3 });
-        newUserMessage.type === 'success' && message.success({ content: newUserMessage.message, key, duration: 3 });
-        newUserMessage.type === 'success' && dispatch(resetFormData());
-    } , [newUserMessage.message]);
+        if(!indicationMessage.message) return;
+        indicationMessage.type === 'error' && message.error({ content: indicationMessage.message, key:indicationMessage.key, duration: 3 });
+        indicationMessage.type === 'info' && message.info({ content: indicationMessage.message, key:indicationMessage.key, duration: 3 });
+        indicationMessage.type === 'success' && message.success({ content: indicationMessage.message, key:indicationMessage.key, duration: 3 });
+        indicationMessage.type === 'success' && dispatch(resetFormData());
+    } , [indicationMessage.message]);
 
     function onInputHandler(target) {
-        const newUserFormData = JSON.parse(JSON.stringify(userFormData));
+        const newUserFormData = JSON.parse(JSON.stringify(subscribeUserFormData));
         typeof target === 'string' && (newUserFormData['role'] = target);
         target.dataset && (target.dataset.address ? newUserFormData.address[target.id] = target.value : newUserFormData[target.id] = target.value);
         dispatch(saveNewUserFormInput(newUserFormData));
     }  
 
     function onSubmit() {
-        message.loading({ content: '...שולח', key });
+        message.loading({ content: '...שולח', key:indicationMessage.key });
         dispatch(saveNewUser());
     }
 
     const fields = [];
-    Object.keys(userFormData).forEach(key =>key!=='address' && fields.push({name : [key] , value: userFormData[key]}));
-    Object.keys(userFormData.address).forEach(key=> fields.push({name : [key] , value: userFormData.address[key]}));
+    Object.keys(subscribeUserFormData).forEach(key =>key!=='address' && fields.push({name : [key] , value: subscribeUserFormData[key]}));
+    Object.keys(subscribeUserFormData.address).forEach(key=> fields.push({name : [key] , value: subscribeUserFormData.address[key]}));
     return (
         <div className="form-container">
             <Form fields={fields} onInput={(e)=>onInputHandler(e.target)} onFinish={onSubmit} dir="rtl" className="form">
@@ -51,7 +50,7 @@ const AddNewUser = () => {
                     <Input id="email" prefix={<MailOutlined/>} type="text" placeholder="כתובת מייל"/>
                 </Form.Item>
                 <Form.Item name="password" rules={[{ required: true, message: 'בבקשה הכנס סיסמא!', }, { min: 8, message: 'הסיסמא צריכה להיות באורך 8 תווים לפחות!', }]} >
-                    <Input id="password" prefix={<LockOutlined/>} type="password" placeholder="סיסמא" value={userFormData.password}/>
+                    <Input id="password" prefix={<LockOutlined/>} type="password" placeholder="סיסמא" value={subscribeUserFormData.password}/>
                 </Form.Item>
                 <Form.Item name="phoneNumber" rules={[{ required: true, message: 'בבקשה הכנס מספר טלפון!', },
                                                     { pattern: /^[\+]?[(]?[0-9]{2,3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im, message: "מספר הטלפון לא תקין" }

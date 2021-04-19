@@ -1,7 +1,7 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { useHistory } from "react-router-dom";
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -9,10 +9,17 @@ import { login, saveLoginFormInput } from '../redux/actions';
 
 const Login = () => {
   const loginFormData = useSelector(state => state.userReducer.loginFormData);
+  const indicationMessage = useSelector(state => state.userReducer.indicationMessage);   
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(()=> {
+    if(!indicationMessage.message) return;
+    indicationMessage.type === 'error' && message.error({ content: indicationMessage.message, key:indicationMessage.key, duration: 3 });
+} , [indicationMessage.message]);
+
   const onLogin = () => {
+    message.loading({ content: 'בבדיקה', key:indicationMessage.key });
     dispatch(login(history));
   };
 
@@ -21,7 +28,7 @@ const Login = () => {
     newLoginFormData[target.id] = target.value;
     dispatch(saveLoginFormInput(newLoginFormData));
   }
-
+  
   const fields = [{name: ['userName'] , value: loginFormData.userName} , {name: ['password'] , value: loginFormData.password}];
   return (
       <div className="form-container">
@@ -40,7 +47,6 @@ const Login = () => {
             </Form.Item>
             <Form.Item>
                 <Button type="primary" htmlType="submit">כניסה</Button>
-                <a href="">הירשם עכשיו!</a>
             </Form.Item>
         </Form>
       </div>
