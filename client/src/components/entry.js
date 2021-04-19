@@ -7,7 +7,7 @@ const Entry = () => {
         <span className="container" dir="rtl">
             <header id="header">
                 <Link to="/login">להתחברות</Link>
-                <img src="../../styles/logo.png"></img>
+                <img src="../../styles/images/logo.png"></img>
             </header>
 
             <section id="banner">
@@ -15,7 +15,7 @@ const Entry = () => {
                     <h1>למידה מרחוק</h1>
                     <p>ברוכים הבאים למערכת ניהול למידה מרחוק <br/>עבור מוסדות לימוד.</p>
                 </div>
-                <video autoPlay loop muted playsInline src='../../styles/banner.mp4'></video>
+                <video autoPlay loop muted playsInline src='../../styles/images/banner.mp4'></video>
             </section>
 
             <section id="footer">
