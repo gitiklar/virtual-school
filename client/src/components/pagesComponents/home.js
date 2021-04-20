@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Layout , Button , message } from 'antd'; const { Header, Sider, Content } = Layout;
 import 'antd/dist/antd.css';
-import UserDetailsComponent from './userComponents/userDetailsComponent';
-import AddNewUserComponent from './userComponents/addNewUserComponent';
+import UserDetailsComponent from '../userComponents/userDetailsComponent';
+import AddNewUserComponent from '../userComponents/addNewUserComponent';
 
 const Home = () => {
     const indicationMessage = useSelector(state => state.userReducer.indicationMessage);   

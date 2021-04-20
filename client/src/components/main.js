@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import store from '../redux/store';
 import '../../styles/main.scss';
-import Entry from './entry';
-import Login from './login';
-import Home from './home';
+import Entry from './pagesComponents/entry';
+import Login from './pagesComponents/login';
+import Home from './pagesComponents/home';
 
 const App = () => {
     return (

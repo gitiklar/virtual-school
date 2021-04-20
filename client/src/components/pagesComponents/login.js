@@ -5,7 +5,7 @@ import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
-import { login, saveLoginFormInput } from '../redux/actions';
+import { login, saveLoginFormInput } from '../../redux/actions';
 
 const Login = () => {
   const loginFormData = useSelector(state => state.userReducer.loginFormData);

@@ -1,23 +1,15 @@
-import React, { useEffect , useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React from 'react';
 import { Button , Modal } from 'antd';
 import 'antd/dist/antd.css';
 import AddNewUserForm from './addNewUserForm';
+import useModal from '../useModal';
 
 const AddNewUserComponent = () => {
-    const [isModalVisible, setIsModalVisible] = useState(true);
-    const history = useHistory();
-    const routeToHome = () => history.push("/home");
-    const routeToAddNewUser = () => history.push("/home/newUser");
-    
-    useEffect(() => {
-        history.location.pathname === "/home" && setIsModalVisible(false);
-        history.location.pathname === "/home/newUser" && setIsModalVisible(true);
-      }, [history.location.pathname]);
+    const [ isModalVisible , routeToHome , routeToModal ] = useModal('newUser');
 
     return (
         <>
-            <Button type="primary" onClick={routeToAddNewUser}>הוספת משתמש חדש</Button>
+            <Button type="primary" onClick={routeToModal}>הוספת משתמש חדש</Button>
             <Modal title="Basic Modal" visible={isModalVisible} onOk={routeToHome} onCancel={routeToHome}>
                 <AddNewUserForm/>   
             </Modal>
