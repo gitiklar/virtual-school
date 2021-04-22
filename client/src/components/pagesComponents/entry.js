@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Entry = () => {
     
     return (
-        <span className="container" dir="rtl">
+        <div className="entryContainer" dir="rtl">
             <header id="header">
                 <Link to="/login">להתחברות</Link>
                 <img src="../../styles/images/logo.png"></img>
@@ -26,7 +26,7 @@ const Entry = () => {
                     </header>
                 </div>
             </section>
-        </span>
+        </div>
     );
 };
 export default Entry;

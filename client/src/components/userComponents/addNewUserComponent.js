@@ -10,7 +10,7 @@ const AddNewUserComponent = () => {
     return (
         <>
             <Button type="primary" onClick={routeToModal}>הוספת משתמש חדש</Button>
-            <Modal title="Basic Modal" visible={isModalVisible} onOk={routeToHome} onCancel={routeToHome}>
+            <Modal title="Basic Modal" footer={null} visible={isModalVisible} onCancel={routeToHome}>
                 <AddNewUserForm/>   
             </Modal>
         </>

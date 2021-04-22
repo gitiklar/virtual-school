@@ -1,8 +1,120 @@
-.ant-layout {
-    .ant-layout-header , .ant-layout-sider {
-        color: white;
-        display: flex;
+$height-header: 2.25rem;
+
+.homeContainer {
+    &:before {
+        content: ' ';
+        background-image: url(./images/bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.05;
+    }
+    #header {
         align-items: center;
-        justify-content:space-around ;
+        display: flex;
+        justify-content: space-between;
+        background: #111111;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: default;
+        height: $height-header;
+        img {
+            width: $height-header*0.8;
+            opacity: 0.7;
+        }
+        .divHello {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            a {
+                color:#ccc;
+            }
+        }
+    }
+    #heading {
+        background-color: #111111;
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url("./images/banner.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-top: 0;
+        height: calc((100vh - #{$height-header}) * 0.5);
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        width: 100%; 
+        &:before {
+            background: linear-gradient(135deg, #ce1b28 0%, #111111 74%);
+            content: ' ';
+            display: block;
+            height: 100%;
+            left: 0;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1; 
+        }
+        h1 {
+            color: white;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .lineMenu {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            backdrop-filter: blur(100px);
+            padding: 20px 0;
+            button {
+                background-color: transparent;
+                color: white;
+                border: none;
+            }
+        }
+    }
+    .wrapper {
+        padding: 8rem 0 6rem 0 ;
+        @media screen and (max-width: 1280px) {
+            & {
+                padding: 0rem 0 0rem 0 ; 
+            } 
+        }
+        @media screen and (max-width: 736px) {
+            & {
+                padding: 0rem 0 0rem 0 ; 
+            } 
+        }
+        @media screen and (max-width: 480px) {
+            & {
+                padding: 0rem 0 0rem 0 ; 
+            }
+        }
+    }
+
+    .inner {
+        margin: 0 auto;
+        width: 75rem;
+        max-width: calc(100% - 6rem);
+
+        @media screen and (max-width: 480px) {
+            & {
+                max-width: calc(100% - 3rem); 
+            } 
+        }
     }
 }

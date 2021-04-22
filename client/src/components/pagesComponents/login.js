@@ -31,25 +31,27 @@ const Login = () => {
   
   const fields = [{name: ['userName'] , value: loginFormData.userName} , {name: ['password'] , value: loginFormData.password}];
   return (
+    <div className="loginContainer">
       <div className="form-container">
-        <Form fields={fields} onInput={(e)=>onInputHandler(e.target)} dir="rtl" name="normal_login" className="form" onFinish={onLogin}>
-            <Form.Item name="userName" rules={[{ required: true, message: 'בבקשה הכנס שם משתמש!',},]}>
-                <Input id="userName" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="שם משתמש" />
-            </Form.Item>
-            <Form.Item name="password" rules={[{ required: true, message: 'בבקשה הכנס סיסמא!', },]}>
-                <Input id="password" prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="סיסמא"/>
-            </Form.Item>
-            <Form.Item>
-                <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>זכור אותי</Checkbox>
-                </Form.Item>
-                <a className="login-form-forgot" href=""> שכחתי סיסמא </a>
-            </Form.Item>
-            <Form.Item>
-                <Button type="primary" htmlType="submit">כניסה</Button>
-            </Form.Item>
-        </Form>
-      </div>
+              <Form fields={fields} onInput={(e)=>onInputHandler(e.target)} dir="rtl" name="normal_login" className="form" onFinish={onLogin}>
+                  <Form.Item name="userName" rules={[{ required: true, message: 'בבקשה הכנס שם משתמש!',},]}>
+                      <Input id="userName" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="שם משתמש" />
+                  </Form.Item>
+                  <Form.Item name="password" rules={[{ required: true, message: 'בבקשה הכנס סיסמא!', },]}>
+                      <Input id="password" prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="סיסמא"/>
+                  </Form.Item>
+                  <Form.Item>
+                      <Form.Item name="remember" valuePropName="checked" noStyle>
+                      <Checkbox className ="colorWhite">זכור אותי</Checkbox>
+                      </Form.Item>
+                      <a className="login-form-forgot colorWhite" href=""> שכחתי סיסמא </a>
+                  </Form.Item>
+                  <Form.Item>
+                      <Button type="primary" htmlType="submit" className="colorWhite">כניסה</Button>
+                  </Form.Item>
+              </Form>
+          </div>
+    </div>
   );
 };
 

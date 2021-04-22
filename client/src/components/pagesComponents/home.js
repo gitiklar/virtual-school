@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import { Layout , Button , message } from 'antd'; const { Header, Sider, Content } = Layout;
+import { Button , message } from 'antd';
 import 'antd/dist/antd.css';
 import UserDetailsComponent from '../userComponents/userDetailsComponent';
 import AddNewUserComponent from '../userComponents/addNewUserComponent';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const indicationMessage = useSelector(state => state.userReducer.indicationMessage);   
@@ -13,26 +14,32 @@ const Home = () => {
     useEffect(() => message.destroy(indicationMessage.key) ,[]);  
 
     return (
-        <Layout>
-            <Header>
-                <Button danger>התנתק</Button>
-                {role} שלום
-                <UserDetailsComponent/>
-            </Header>
-            <Layout>
-                <Content>
-
-                </Content>
-                <Sider>
+        <div className="homeContainer">
+			<header id="header">
+                 <img src="../../styles/images/logo.png"></img>
+                 <div className="divHello">
+                    <Link to="/"><u>התנתק</u>&nbsp;&nbsp;&nbsp;</Link>
+                    <span> שלום {role} &nbsp; &nbsp;</span>
+                 </div>
+			</header>
+			<div id="heading" >
+                <div className="lineMenu">
                     { role === 'מנהל' && (
-                        <>
-                            <Button type="primary">רשימת משתמשים</Button>
-                            <AddNewUserComponent/>
-                        </>
+                                <>
+                                    <AddNewUserComponent/>
+                                    <Button type="primary">רשימת משתמשים</Button>
+                                </>
                     )}
-                </Sider>
-            </Layout>
-        </Layout>
+                    <UserDetailsComponent/>
+                </div>
+            </div>
+			<section id="main" className="wrapper">
+				<div className="inner">
+				
+				</div>
+			</section>
+        </div>
+      
     );
 }
 export default Home;
